@@ -32,7 +32,7 @@ services:
         ports:
             - "${PHP_PORT}:9001"
         volumes:
-            - ./symfony:/var/www/symfony:cached
+            - /var/www/symfony:cached
             - ./logs/symfony:/var/www/symfony/var/log:cached
         depends_on:
             - db
