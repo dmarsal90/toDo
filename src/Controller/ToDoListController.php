@@ -40,4 +40,17 @@ class ToDoListController extends AbstractController
 
     }
 
+    /**
+     * @Route("/switch_status/{id}", name="switch_status")
+     */
+    public function switchStatus($id)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $task = $entityManager->getRepository(Task::class)->find($id);
+        $task->setStatus(!$task->getStatus());
+        $entityManager->flush();
+        return $this->redirectToRoute('app_to_do_list');
+
+    }
+
 }
