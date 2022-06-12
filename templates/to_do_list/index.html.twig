@@ -91,5 +91,19 @@
         </div>
     </div>
 
+    <script>
+        $(document).ready(function () {
+            $("#input").on('keyup', function () {
+                let text = $("#input").val().trim();
+                if (text.length === 0) {
+                    $("#add").show();
+                    $("#save").hide();
+                } else {
+                    $("#add").hide();
+                    $("#save").show();
+                }
+            });
+        });
+    </script>
     </body>
 {% endblock %}
