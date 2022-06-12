@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Task;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -17,4 +19,23 @@ class ToDoListController extends AbstractController
             'controller_name' => 'ToDoListController',
         ]);
     }
+
+    /**
+     * @Route("/create", name="create_task")
+     */
+    public function create(Request $request)
+    {
+        $title = trim($request->request->get('title'));
+        if (empty($title))
+            return $this->redirectToRoute('app_to_do_list');
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $task = new Task();
+        $task->setTitle($title);
+        $entityManager->persist($task);
+        $entityManager->flush();
+        return $this->redirectToRoute('app_to_do_list');
+
+    }
+
 }
