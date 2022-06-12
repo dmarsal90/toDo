@@ -1,42 +1,62 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}Log in!
+{% endblock %}
 
-{% block body %}
+{% block template %}
+
 <form method="post">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
 
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+    {# {% if app.user %}
+				        <div class="mb-3">
+				            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+				        </div>
+				    {% endif %} #}
+
+    <section class="vh-100">
+        <div class="container-fluid h-custom">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-md-9 col-lg-6 col-xl-5">
+                    <img src="{{ asset('img/undraw_Login_re_4vu2.png') }}" class="img-fluid" alt="login image">
+                </div>
+                <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                    <form method="POST" action="app_login">
+                        <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start"></div>
+
+                        <!-- Email input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="form3Example3">Email address</label>
+                            <input type="email" value="{{ last_username }}" name="email" id="form3Example3"
+                                   class="form-control form-control-lg" placeholder="Enter a valid email address"
+                                   autocomplete="email" required autofocus>
+                        </div>
+
+                        <!-- Password input -->
+                        <div class="form-outline mb-3">
+                            <label class="form-label" for="form3Example4">Password</label>
+                            <input type="password" name="password" id="form3Example4"
+                                   class="form-control form-control-lg" placeholder="Enter your password"
+                                   autocomplete="current-password" required>
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                        </div>
+
+                        <div class="text-center text-lg-start mt-4 pt-2">
+                            <button type="submit" class="btn btn-primary btn-block">
+                                <i class="fa fa-sign-in"></i>
+                                Login
+                            </button>
+                        </div>
+                    </form>
+                    <p class="fw-bold mt-2 pt-1 mb-0">Don't have an account?
+                                <a href="{{ path('app_register') }}" class="link-danger">Register</a>
+                            </p>
+                </div>
+            </div>
         </div>
-    {% endif %}
+    </section>
 
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputEmail">Email</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-    <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
 
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
-
-    {#
-        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-        See https://symfony.com/doc/current/security/remember_me.html
-
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" name="_remember_me"> Remember me
-            </label>
-        </div>
-    #}
-
-    <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
-    </button>
-</form>
-{% endblock %}
+    {% endblock %}
