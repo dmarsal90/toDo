@@ -6,12 +6,11 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class AuthTest extends WebTestCase
 {
-    public function testSomething(): void
+    public function test_home_can_be_displayed(): void
     {
         $client = static::createClient();
         $crawler = $client->request('GET', '/');
 
         $this->assertResponseIsSuccessful();
-        $this->assertSelectorTextContains('h1', 'Hello World');
     }
 }
