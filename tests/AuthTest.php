@@ -28,4 +28,12 @@ class AuthTest extends WebTestCase
         $email = $user->getEmail();
         $this->assertEquals('user@test.dev', $email);
     }
+
+    public function test_register_can_be_displayed(): void
+    {
+        $client = static::createClient();
+        $crawler = $client->request('GET', '/register');
+
+        $this->assertResponseIsSuccessful();
+    }
 }
