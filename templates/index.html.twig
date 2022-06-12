@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block template %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{{ path('app_to_do_list') }}">To-Do</a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+                aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav mr-auto mt-0 form-inline">
+                <li class="nav-item dropdown my-2 my-sm-0">
+                    {% if app.user %}
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                         {{ app.user.username }}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ path('app_logout') }}"><i class="fa fa-sign-out"></i> Logout
+                        </a>
+                    </div>
+                    {% endif %}
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <main class="py-4">
+        {% block body %}{% endblock %}
+    </main>
+
+{% endblock %}
