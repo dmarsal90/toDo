@@ -46,4 +46,12 @@ class TaskTest extends WebTestCase
         $client->submitForm('Ok');
         $this->assertResponseRedirects('/to/do/list');
     }
+
+    public function test_to_do_list_contain_title(): void
+    {
+        $client = static::createClient();
+        $crawler = $client->request('GET', '/to/do/list');
+
+        $this->assertSelectorTextContains('h2', 'Tasks');
+    }
 }
