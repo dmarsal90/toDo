@@ -1,17 +1,52 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Register
+{% endblock %}
 
-{% block body %}
-    <h1>Register</h1>
-
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
-
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+{% block template %}
+    <section class="vh-100">
+        <div class="container-fluid h-custom">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-md-9 col-lg-6 col-xl-5">
+                    <img src="{{ asset('img/undraw_welcome_cats_thqn.png') }}"
+                         class="img-fluid" alt="register image">
+                </div>
+                <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                    <div class="form-group">
+                        {{ form_start(registrationForm) }}
+                        <fieldset>
+                            <div class="row">
+                                <div class="form-group col-sm-12">
+                                    {{ form_label(registrationForm.email) }}
+                                    {{ form_widget(registrationForm.email,{'attr': {'class': 'form-control', 'placeholder': 'Email'}}) }}
+                                    <span class="text-danger"><strong>{{ form_errors(registrationForm.email) }}</strong></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-12">
+                                    {{ form_label(registrationForm.Password) }}
+                                    {{ form_widget(registrationForm.Password,{'attr': {'class': 'form-control', 'placeholder': 'Password'}}) }}
+                                    <span class="text-danger"><strong>{{ form_errors(registrationForm.Password) }}</strong></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-12">
+                                    {{ form_label(registrationForm.agreeTerms) }}
+                                    {{ form_widget(registrationForm.agreeTerms) }}
+                                    <span class="text-danger"><strong>{{ form_errors(registrationForm.agreeTerms) }}</strong></span>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-user-plus"></i> Register
+                        </button>
+                        <div class="text-center text-lg-start mt-4 pt-2">
+                            <p class="fw-bold mt-2 pt-1 mb-0">You're already a member? <a
+                                        href="{{ path('app_login') }}">Login</a></p>
+                        </div>
+                        {{ form_end(registrationForm) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}
