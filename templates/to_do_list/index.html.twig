@@ -2,7 +2,11 @@
 
 {% block title %}To-Do List
 {% endblock %}
-
+{% block head %}
+	<head>
+		<link rel="stylesheet" href="{{ asset('css/demo.css') }}">
+	</head>
+{% endblock %}
 {% block body %}
     <body class=" bg-gray">
     <h2 class="mt-3 mb-3" align="center">Tasks</h2>
