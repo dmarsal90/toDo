@@ -20,4 +20,12 @@ class AuthTest extends WebTestCase
         $user = new User();
         $this->assertInstanceOf(User::class, $user);
     }
+
+    public function test_a_user_should_have_an_email(): void
+    {
+        $user = new User();
+        $user->setEmail('user@test.dev');
+        $email = $user->getEmail();
+        $this->assertEquals('user@test.dev', $email);
+    }
 }
