@@ -48,4 +48,12 @@ class AuthTest extends WebTestCase
         $client->submitForm('Register');
         $this->assertResponseIsSuccessful();
     }
+
+     public function test_login_can_be_displayed(): void
+    {
+        $client = static::createClient();
+        $crawler = $client->request('GET', '/login');
+
+        $this->assertResponseIsSuccessful();
+    }
 }
