@@ -25,3 +25,17 @@ height: calc(100% - 73px);
   margin-left: calc(100% - 200px);
   max-height: 7px;
 }
+
+
+@media (max-width: 450px) {
+.h-custom {
+height: 100%;
+}
+}
+
+@media (max-width: 1230px) {
+.text{
+  display: none;
+}
+
+}
