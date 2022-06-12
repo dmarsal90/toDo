@@ -36,4 +36,16 @@ class AuthTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
     }
+
+    public function test_a_user_can_register(): void
+    {
+        $client = static::createClient();
+        $client->request('GET', '/register');
+        $client->request('POST', '/register', [
+            'email' => 'user@test.dev',
+            'password' => 'password'
+        ]);
+        $client->submitForm('Register');
+        $this->assertResponseIsSuccessful();
+    }
 }
