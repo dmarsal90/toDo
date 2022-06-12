@@ -54,4 +54,13 @@ class TaskTest extends WebTestCase
 
         $this->assertSelectorTextContains('h2', 'Tasks');
     }
+
+      public function test_a_task_can_be_deleted(): void
+    {
+        $client = static::createClient();
+        $crawler = $client->request('GET', '/to/do/list');
+        $client->submit($crawler->filter('#delete-form')->form());
+        $this->assertNull($client);
+        $this->assertResponseRedirects('/to/do/list');
+    }
 }
