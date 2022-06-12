@@ -49,11 +49,28 @@ class AuthTest extends WebTestCase
         $this->assertResponseIsSuccessful();
     }
 
-     public function test_login_can_be_displayed(): void
+    public function test_login_can_be_displayed(): void
     {
         $client = static::createClient();
         $crawler = $client->request('GET', '/login');
 
         $this->assertResponseIsSuccessful();
+    }
+
+    public function test_a_user_can_login(): void
+    {
+        $client = self::createClient();
+
+        $crawler = $client->request('GET', '/login');
+
+        $form = $crawler->selectButton('Submit')->form();
+
+        $form['_email'] = 'user@test.dev';
+        $form['_password'] = 'password';
+
+        $client->submit($form);
+        //$crawler = $client->followRedirect();
+        $this->assertEquals('App\Controller\SecurityController::login', $client->getRequest()->attributes->get('_controller'));
+        // $this->assertResponseRedirects('/to/do/list');
     }
 }
