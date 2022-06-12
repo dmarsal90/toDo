@@ -20,4 +20,18 @@ class TaskTest extends WebTestCase
         $task = new Task();
         $this->assertInstanceOf(Task::class, $task);
     }
+    public function test_a_task_should_have_a_title(): void
+    {
+        $task = new Task();
+        $task->setTitle('test');
+        $title = $task->getTitle();
+        $this->assertEquals('test', $title);
+    }
+
+    private function generateRandomString(int $length): string
+    {
+        $chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+        return mb_substr(str_shuffle(str_repeat($chars, ceil($length / mb_strlen($chars)))), 1, $length);
+    }
 }
