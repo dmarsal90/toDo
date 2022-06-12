@@ -34,4 +34,16 @@ class TaskTest extends WebTestCase
 
         return mb_substr(str_shuffle(str_repeat($chars, ceil($length / mb_strlen($chars)))), 1, $length);
     }
+
+    public function test_a_task_can_be_created(): void
+    {
+        $taskTitle = $this->generateRandomString(255);
+        $client = static::createClient();
+        $client->request('GET', '/to/do/list');
+        $client->request('POST', '/create', [
+            $taskTitle
+        ]);
+        $client->submitForm('Ok');
+        $this->assertResponseRedirects('/to/do/list');
+    }
 }
