@@ -3,6 +3,7 @@
 namespace App\Tests;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use App\Entity\User;
 
 class AuthTest extends WebTestCase
 {
@@ -12,5 +13,11 @@ class AuthTest extends WebTestCase
         $crawler = $client->request('GET', '/');
 
         $this->assertResponseIsSuccessful();
+    }
+
+    public function test_user_should_be_able_to_construct(): void
+    {
+        $user = new User();
+        $this->assertInstanceOf(User::class, $user);
     }
 }
