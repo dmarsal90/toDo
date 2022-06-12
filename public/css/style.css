@@ -1,0 +1,27 @@
+.tweet_link {
+  color: #f39c12;
+}
+.tweet_user {
+  color: #1abc9c;
+}
+.hashtag {
+  color: #3947cc;
+}
+
+.divider:after,
+.divider:before {
+content: "";
+flex: 1;
+height: 1px;
+background: #eee;
+}
+.h-custom {
+height: calc(100% - 73px);
+}
+.buttons{
+  display: flex;
+  align-items: end;
+  justify-content: right;
+  margin-left: calc(100% - 200px);
+  max-height: 7px;
+}
