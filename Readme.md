@@ -14,13 +14,13 @@ Installation 🔧
 
 ``composer install``
 
-Ejecutando las pruebas ⚙️
+Executing tests ⚙️
 
 ``php bin/phpunit --filter test-name``
 
 Build with 🛠️
 
-Menciona las herramientas que utilizaste para crear tu proyecto
+Tools used in the project.
 
     Docker - Containers
     Symfony - Web Framework
